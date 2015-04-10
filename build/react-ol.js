@@ -1,5 +1,3 @@
-var div = React.DOM.div;
-
 var OLMap = React.createClass({displayName: "OLMap",
 
 	getInitialState: function() {
