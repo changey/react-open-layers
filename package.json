@@ -1,31 +1,19 @@
 {
-  "name": "react-open-layers",
-  "version": "0.0.0",
-  "description": "",
-  "main": "Gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run serve | npm run dev",
+    "serve": "./node_modules/.bin/http-server -p 9501",
+    "dev": "webpack-dev-server --progress --colors --port 9601"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/changey/react-open-layers.git"
-  },
-  "keywords": [
-    "example",
-    "heroku"
-  ],
-  "author": "Eric Chang",
-  "license": "MIT",
-  "bugs": {
-    "url": ""
-  },
-  "engines": {
-    "node": "0.10.x"
-  },
+  "name": "basic-property-grid",
+  "version": "0.1.0",
+  "main": "index.js",
   "dependencies": {
-    "es6-promise": "^2.0.1",
-    "events": "^1.0.2",
-    "object-assign": "^2.0.0",
-    "requirejs": "^2.1.16"
+    "react": "~0.11.2"
+  },
+  "devDependencies": {
+    "webpack": "~1.4.4",
+    "webpack-dev-server": "~1.6.5",
+    "jsx-loader": "~0.11.2",
+    "http-server": "~0.7.1"
   }
 }
