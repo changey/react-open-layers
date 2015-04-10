@@ -2,4 +2,4 @@
 
 To run:
 
-jsx --watch src/ build/
+npm run start
