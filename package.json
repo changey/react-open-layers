@@ -1,0 +1,31 @@
+{
+  "name": "react-open-layers",
+  "version": "0.0.0",
+  "description": "",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/changey/react-open-layers.git"
+  },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "author": "Eric Chang",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "es6-promise": "^2.0.1",
+    "events": "^1.0.2",
+    "object-assign": "^2.0.0",
+    "requirejs": "^2.1.16"
+  }
+}

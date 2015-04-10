@@ -1,3 +1,5 @@
+var React = require('react');
+
 var OLMap = React.createClass({displayName: "OLMap",
 
 	getInitialState: function() {
