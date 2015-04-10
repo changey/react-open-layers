@@ -1,6 +1,6 @@
 var div = React.DOM.div;
 
-var Dialog = React.createClass({
+var Dialog = React.createClass({displayName: "Dialog",
 
 	getInitialState: function() {
     return {
@@ -39,15 +39,15 @@ var Dialog = React.createClass({
 
   render: function() {
 		return this.state.showDialog ? (
-      <div className="react-dialog dialog transparent-border full">
-			  foo
-      </div>
+      React.createElement("div", {className: "react-dialog dialog transparent-border full"}, 
+			  "foo"
+      )
     ) : div();
   }
 });
 
 React.renderComponent(
-	    <Dialog
-			/>,
-			document.getElementById('react')
+	    React.createElement(Dialog, null
+			),
+    div.react
 );
