@@ -5,3 +5,14 @@
 .ol-feature {
   margin-top: 30px;
 }
+
+html, body, #map {
+    height: 400px;
+    width: 800px;
+}
+div.olMap {
+    z-index: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: default;
+}
