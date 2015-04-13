@@ -1,3 +1,7 @@
 #olMap {
   height: 250px;
 }
+
+.ol-feature {
+  margin-top: 30px;
+}
