@@ -11,31 +11,30 @@ var OLFeatures = React.createClass({
 
   componentWillMount() {
 
-    this.setState({features: [
-      {position: 1},
-      {position: 2}]})
+    var features = [];
+    var size = 2;
+
+    for(var i = 0; i < size; i++) {
+      features.push({
+        position: i,
+        id: i
+      })
+    }
+
+    this.setState({features: features})
     },
 
     render() {
 
-      // var size = 2;
-
-      var features = this.state.features.map(function(f) {
-        return <div>foo</div>
-      });
-
-      console.log(this.features)
-      // var features = [];
-
       var map = this.props.map;
-      console.log(map)
 
       return (
         <div className="features">
           {this.state.features.map(function(f) {
             //return <div>foo</div>
             return (  <OLFeature map = {map}
-              position = {f.position}>
+              position = {f.position}
+              id = {f.id}>
               baz
             </OLFeature>
           )
