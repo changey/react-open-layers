@@ -7,7 +7,7 @@
 }
 
 html, body, #map {
-    height: 400px;
+    height: 300px;
     width: 800px;
 }
 div.olMap {
