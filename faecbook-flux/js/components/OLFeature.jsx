@@ -10,7 +10,6 @@ var OLFeature = React.createClass({
 
 	componentWillMount: function() {
 		console.log("will mount")
-		console.log(this.props.map)
 
 	},
 
@@ -32,11 +31,11 @@ var OLFeature = React.createClass({
 
 		var lonlat = new OpenLayers.LonLat(14975000,4268330);
 
-		//var position = parseInt(this.props.position);
-		var position = 1;
+		var position = parseInt(this.props.position) || 1;
+		//var position = 1;
 
 		var f1 = new OpenLayers.Feature.Vector(
-			new OpenLayers.Geometry.Point(14975000,4268330 + position * 100000), {
+			new OpenLayers.Geometry.Point(14975000,4268330 + position * 200000), {
 				id: 'A'
 			}, {
 				externalGraphic: '../images/pikachu.png',
@@ -57,7 +56,7 @@ var OLFeature = React.createClass({
 
 		render: function() {
 			return (
-				<div id="map">
+				<div className="feature">
 					foo
 				</div>
 			)

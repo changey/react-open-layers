@@ -29,7 +29,7 @@ var OLMap = React.createClass({
 
   render: function() {
 		return (
-			<div className="ol-feature">
+			<div id="map">
 			  bar
       </div>
 		)
