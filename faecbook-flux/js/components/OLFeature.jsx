@@ -44,6 +44,8 @@ var OLFeature = React.createClass({
 			});
 			vectorLayer1.addFeatures(f1);
 
+			//vectorLayer1.removeFeatures(f1);
+
 			var drag1 = new OpenLayers.Control.DragFeature(vectorLayer1, {
 				autoActivate: true
 			});
@@ -64,7 +66,9 @@ var OLFeature = React.createClass({
 
 			vectorLayer1.events.on({
 				"featureselected": function(e) {
-					console.log("selected");
+					console.log(e.feature.id);
+					//this.removeFeatures(this.getFeatureById(e.feature.id))
+					console.log(this.getFeatureById(e.feature.id));
 				}
 			});
 
