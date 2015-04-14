@@ -10,6 +10,7 @@ var OLFeature = React.createClass({
 
 	componentWillMount: function() {
 		console.log("will mount")
+		console.log(this.props.map)
 
 	},
 
@@ -20,7 +21,7 @@ var OLFeature = React.createClass({
 			maxExtent: bounds
 		}));
 
-		var bounds = new OpenLayers.Bounds(-100, -100, 100, 100);
+		var bounds = new OpenLayers.Bounds(-200, -200, 100, 100);
 
 		// vector1 - the blue marker shape
 		var vectorLayer1 = new OpenLayers.Layer.Vector("vector1", {
@@ -29,8 +30,13 @@ var OLFeature = React.createClass({
     this.props.map.addLayer(vectorLayer1);
 
 
+		var lonlat = new OpenLayers.LonLat(14975000,4268330);
+
+		//var position = parseInt(this.props.position);
+		var position = 1;
+
 		var f1 = new OpenLayers.Feature.Vector(
-			new OpenLayers.Geometry.Point(-50, 50), {
+			new OpenLayers.Geometry.Point(14975000,4268330 + position * 100000), {
 				id: 'A'
 			}, {
 				externalGraphic: '../images/pikachu.png',

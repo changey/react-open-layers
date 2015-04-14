@@ -6,17 +6,18 @@ require('es6-shim/es6-sham');
 var React = require('react');
 var OLMap = require('./components/OLMap')
 var OLFeature =require("./components/OLFeature")
+var OLFeatures = require("./components/OLFeatures")
 
 var MapView = React.createClass({
 
 	getInitialState() {
-    return {
-        showDialog: true
-    };
-  },
+		return {
+			features: []
+		};
+	},
 
 	componentWillMount() {
-    // this.map = new OpenLayers.Map('map', {
+		// this.map = new OpenLayers.Map('map', {
 		// 	div: "map"
 		// });
 		var map = new OpenLayers.Map('map', {
@@ -28,36 +29,43 @@ var MapView = React.createClass({
 			]
 		});
 		map.addLayer(new OpenLayers.Layer.OSM());
-		map.setCenter(new OpenLayers.LonLat(0, 0), 2);
 
 		this.setState({map: map});
-    this.map = map;
+		this.map = map;
+
+		// var size = 2;
+		// for(var i =0; i< size; i++) {
+		// 	features.add({position: i});
+		// }
 	},
 
-  componentDidMount() {
-    this.map.render(document.getElementById('map'))
+	componentDidMount() {
+		this.map.render(document.getElementById('map'))
 	},
 
 	componentWillUpdate() {
 		console.log(this.map)
 	},
 
-  render() {
+	render() {
+
+		var size = 2;
+
 		return (
 			<div id="something">
-			  <OLMap id="ol-map" zoom="2"
+				<OLMap id="ol-map" zoom="4"
 					map = {this.map}>
 
-        </OLMap>
-				<OLFeature map = {this.map}>
+				</OLMap>
+				<OLFeatures map = {this.map}>
 					baz
-				</OLFeature>
-      </div>
+				</OLFeatures>
+			</div>
 		)
-  }
+	}
 });
 
 React.render(
-    React.createElement(MapView, null),
-    document.getElementById('flux-app')
+	React.createElement(MapView, null),
+	document.getElementById('flux-app')
 );

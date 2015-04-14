@@ -19,8 +19,8 @@ var OLMap = React.createClass({
 		//
 		// map.zoomToExtent(vectors.getDataExtent());
 		//console.log(this.props)
-    console.log(this.props.zoom)
-		this.props.map.setCenter(new OpenLayers.LonLat(0, 0), parseInt(this.props.zoom));
+
+		this.props.map.setCenter((new OpenLayers.LonLat(14975000,4268330)), parseInt(this.props.zoom));
 
 			// var dragControl = new OpenLayers.Control.DragFeature(vectors);
 			//
