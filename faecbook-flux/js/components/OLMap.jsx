@@ -1,27 +1,12 @@
+/** @jsx React.DOM */
+'use strict'
 var React = require('react')
 
 var OLMap = React.createClass({
 
-	getInitialState: function() {
-		return {
-			showDialog: true
-		};
-	},
-
-	componentWillMount: function() {
-		console.log("will mount")
-
-	},
-
-	componentDidMount: function() {
-		//this.map.setTarget(document.getElementById('olMap'));
+  componentDidMount: function() {
+    //this.map.setTarget(document.getElementById('olMap'));
 		// this.map.renderSync();
-
-
-		// var map = new OpenLayers.Map("map", {
-		// 	div: "map",
-		// 	controls: []
-		// });
 
 		// var wkt = new OpenLayers.Format.WKT();
 		//
@@ -33,55 +18,22 @@ var OLMap = React.createClass({
 		// vectors.addFeatures([polygonFeature]);
 		//
 		// map.zoomToExtent(vectors.getDataExtent());
-		console.log(this.props)
-
-		// map.addLayer(new OpenLayers.Layer('base', {
-		// 	isBaseLayer: true,
-		// 	maxExtent: bounds
-		// }));
-		//
-		// var bounds = new OpenLayers.Bounds(-100, -100, 100, 100);
-		//
-		// // vector1 - the blue marker shape
-		// var vectorLayer1 = new OpenLayers.Layer.Vector("vector1", {
-		// 	maxExtent: bounds
-		// });
-		// map.addLayer(vectorLayer1);
-		//
-		//
-		// var f1 = new OpenLayers.Feature.Vector(
-		// 	new OpenLayers.Geometry.Point(-50, 50), {
-		// 		id: 'A'
-		// 	}, {
-		// 		externalGraphic: '../images/pikachu.png',
-		// 		graphicWidth: 40,
-		// 		graphicHeight: 40
-		// 	});
-		// 	vectorLayer1.addFeatures(f1);
-		//
-		// 	var drag1 = new OpenLayers.Control.DragFeature(vectorLayer1, {
-		// 		autoActivate: true
-		// 	});
-		// 	map.addControl(drag1);
-		//
-		// 	map.zoomToMaxExtent();
+		//console.log(this.props)
+    console.log(this.props.zoom)
+		this.props.map.setCenter(new OpenLayers.LonLat(0, 0), parseInt(this.props.zoom));
 
 			// var dragControl = new OpenLayers.Control.DragFeature(vectors);
 			//
 			// map.addControl(dragControl);
-		},
+  },
 
-		create_map: function() {
-			console.log("bar");
-		},
+  render: function() {
+		return (
+			<div className="ol-feature">
+			  bar
+      </div>
+		)
+  }
+});
 
-		render: function() {
-			return (
-				<div id="map">
-					foo
-				</div>
-			)
-		}
-	});
-
-	module.exports = OLMap;
+module.exports = OLMap;

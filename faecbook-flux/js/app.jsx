@@ -4,8 +4,8 @@ require('es6-shim');
 require('es6-shim/es6-sham');
 
 var React = require('react');
-var OLFeature = require('./components/OLFeature')
-var OLMap =require("./components/OLMap")
+var OLMap = require('./components/OLMap')
+var OLFeature =require("./components/OLFeature")
 
 var MapView = React.createClass({
 
@@ -45,12 +45,12 @@ var MapView = React.createClass({
   render() {
 		return (
 			<div id="something">
-			  <OLMap id="ol-map" zoom="4"
+			  <OLMap id="ol-map" zoom="2"
 					map = {this.map}>
 
         </OLMap>
-				<OLFeature>
-					bar
+				<OLFeature map = {this.map}>
+					baz
 				</OLFeature>
       </div>
 		)
