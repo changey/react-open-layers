@@ -15,7 +15,7 @@ function create() {
   _features[id] = {
     id: id,
     position: Math.floor((Math.random() * 3)),
-    x: 14975000 + (Math.floor((Math.random() * 6)) - 3) * 400000,
+    x: 14975000 + (Math.floor((Math.random() * 10)) - 5) * 400000,
     y: 4268330 + (Math.floor((Math.random() * 6) - 3) * 400000)
   };
 }

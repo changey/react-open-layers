@@ -16,15 +16,18 @@ var OLFeature = React.createClass({
 		var y = parseInt(this.props.y);
 		//var position = 1;
 
-		var f1 = new OpenLayers.Feature.Vector(
+		var feature = new OpenLayers.Feature.Vector(
 			new OpenLayers.Geometry.Point(x, y), {
-				id: this.props.id
+
 			}, {
 				externalGraphic: '../images/pikachu.png',
 				graphicWidth: 40,
 				graphicHeight: 40
 			});
-			this.props.layer.addFeatures(f1);
+
+			feature.geometry.id = this.props.id;
+
+			this.props.layer.addFeatures(feature);
 
 
 

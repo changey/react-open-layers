@@ -68,7 +68,6 @@ var OLLayer = React.createClass({
     var that = this;
     this.vectorLayer.events.on({
       "featureselected": function(e) {
-
         that.setState({selectedFeatureId: e.feature.id})
       }
     });
