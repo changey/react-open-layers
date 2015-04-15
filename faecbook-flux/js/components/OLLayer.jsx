@@ -100,11 +100,14 @@ var OLLayer = React.createClass({
 
     for (var key in allFeatures) {
       //return <div>foo</div>
-      featureDOMs.push (  <OLFeature map = {map}
-        position = {allFeatures[key].position}
-        id = {allFeatures[key].id}
-        layer = {layer}>
-      </OLFeature>
+      featureDOMs.push (
+        <OLFeature map = {map}
+          position = {allFeatures[key].position}
+          id = {allFeatures[key].id}
+          x = {allFeatures[key].x}
+          y = {allFeatures[key].y}
+          layer = {layer}>
+        </OLFeature>
       )
     }
 

@@ -12,10 +12,12 @@ var OLFeature = React.createClass({
 		var lonlat = new OpenLayers.LonLat(14975000,4268330);
 
 		var position = parseInt(this.props.position);
+		var x = parseInt(this.props.x);
+		var y = parseInt(this.props.y);
 		//var position = 1;
 
 		var f1 = new OpenLayers.Feature.Vector(
-			new OpenLayers.Geometry.Point(14975000,4268330 + position * 400000), {
+			new OpenLayers.Geometry.Point(x, y), {
 				id: this.props.id
 			}, {
 				externalGraphic: '../images/pikachu.png',

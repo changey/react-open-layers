@@ -15,7 +15,7 @@ var Actions = {
   },
 
   destroy: function(id) {
-    AppDispatcher.handleViewAction({
+    AppDispatcher.dispatch({
       actionType: AppConstants.DESTROY,
       id: id
     })
