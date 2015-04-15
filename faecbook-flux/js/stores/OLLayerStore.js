@@ -8,7 +8,6 @@ var CHANGE_EVENT = 'change';
 var _features = {};
 
 function create() {
-  console.log(_features)
   // Hand waving here -- not showing how this interacts with XHR or persistent
   // server-side storage.
   // Using the current timestamp + random number in place of a real id.

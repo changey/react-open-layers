@@ -74,7 +74,7 @@ var OLLayer = React.createClass({
     });
 
     OLLayerStore.addChangeListener(this._onChange);
-    this.setState({render: _.size(this.state.allFeatures) !== 0})
+
   },
 
   componentWillUnmount: function() {
@@ -94,37 +94,44 @@ var OLLayer = React.createClass({
     var map = this.props.map;
     var layer = this.vectorLayer;
 
+    var featureDOMs = [];
+
+    var allFeatures = this.state.allFeatures;
+
+    for (var key in allFeatures) {
+      //return <div>foo</div>
+      featureDOMs.push (  <OLFeature map = {map}
+        position = {allFeatures[key].position}
+        id = {allFeatures[key].id}
+        layer = {layer}>
+      </OLFeature>
+      )
+    }
+
     return this.state.render ? (
       <div>
         <div className="features">
-          {this.state.allFeatures.map(function(f) {
-            //return <div>foo</div>
-            return (  <OLFeature map = {map}
-              position = {f.position}
-              id = {f.id}
-              layer = {layer}>
-            </OLFeature>
-          )
-        })}
+          {featureDOMs}
+        </div>
+        <button className="delete" onClick={this._onDestroyClick}>Delete</button>
+        <button className="create" onClick={this._onCreateClick}>Add a fetaure</button>
       </div>
-      <button className="delete" onClick={this._onDestroyClick}>Delete</button>
-      <button className="create" onClick={this._onCreateClick}>Add a fetaure</button>
-    </div>
-  ) : (
-    <div>
-      <button className="delete" onClick={this._onDestroyClick}>Delete</button>
-      <button className="create" onClick={this._onCreateClick}>Add a fetaure</button>
-    </div>
-  )
-},
+    ) : (
+      <div>
+        <button className="delete" onClick={this._onDestroyClick}>Delete</button>
+        <button className="create" onClick={this._onCreateClick}>Add a fetaure</button>
+      </div>
+    )
+  },
 
-/**
-* Event handler for 'change' events coming from the Store
-*/
-_onChange: function() {
-  console.log(this.state)
-  this.setState(getFeatureState());
-}
+  /**
+  * Event handler for 'change' events coming from the Store
+  */
+  _onChange: function() {
+
+    this.setState(getFeatureState());
+    this.setState({render: _.size(this.state.allFeatures) !== 0})
+  }
 });
 
 module.exports = OLLayer;
