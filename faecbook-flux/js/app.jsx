@@ -7,6 +7,7 @@ var React = require('react');
 var OLMap = require('./components/OLMap')
 var OLFeature =require("./components/OLFeature")
 var OLFeatures = require("./components/OLFeatures")
+var OLLayer = require("./components/OLLayer")
 
 var MapView = React.createClass({
 
@@ -57,9 +58,7 @@ var MapView = React.createClass({
 					map = {this.map}>
 
 				</OLMap>
-				<OLFeatures map = {this.map}>
-					baz
-				</OLFeatures>
+				<OLLayer class="ol-layer" map = {this.map}></OLLayer>
 			</div>
 		)
 	}

@@ -22,26 +22,28 @@ var OLFeatures = React.createClass({
     }
 
     this.setState({features: features})
-    },
+  },
 
-    render() {
+  render() {
 
-      var map = this.props.map;
+    var map = this.props.map;
+    var layer = this.props.layer;
 
-      return (
-        <div className="features">
-          {this.state.features.map(function(f) {
-            //return <div>foo</div>
-            return (  <OLFeature map = {map}
-              position = {f.position}
-              id = {f.id}>
-              baz
-            </OLFeature>
-          )
-        })}
-      </div>
-    )
-  }
+    return (
+      <div className="features">
+        {this.state.features.map(function(f) {
+          //return <div>foo</div>
+          return (  <OLFeature map = {map}
+            position = {f.position}
+            id = {f.id}
+            layer = {layer}>
+            baz
+          </OLFeature>
+        )
+      })}
+    </div>
+  )
+}
 });
 
 module.exports = OLFeatures;
