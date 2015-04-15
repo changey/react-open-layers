@@ -4,7 +4,8 @@ var keyMirror = require('react/lib/keyMirror');
 
 module.exports = {
     ActionTypes: keyMirror({
-      //  RECEIVE_PRODUCTS: null
+      DESTROY: null,
+      CREATE: null
     }),
 
     PayloadSources: keyMirror({

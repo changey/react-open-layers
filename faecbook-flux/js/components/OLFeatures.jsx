@@ -1,11 +1,14 @@
-var React = require('react')
-var OLFeature =require("./OLFeature")
+var React = require('react');
+var OLFeature =require("./OLFeature");
+var div = React.DOM.div;
+var _ = require('underscore');
 
 var OLFeatures = React.createClass({
 
   getInitialState() {
     return {
-      features: []
+      features: [],
+      render: false
     };
   },
 
@@ -21,17 +24,23 @@ var OLFeatures = React.createClass({
       })
     }
 
-    this.setState({features: features})
+    this.setState({features: features});
+    //this.setState({render: _.size(this.props.features.allFeatures) !== 0})
+  },
+
+  componentDidUpdate() {
+    console.log(_.size(this.props.features.allFeatures) === 0)
   },
 
   render() {
 
     var map = this.props.map;
     var layer = this.props.layer;
+    var features = this.props.features.allFeatures;
 
-    return (
+    return this.state.render ? (
       <div className="features">
-        {this.state.features.map(function(f) {
+        {features.map(function(f) {
           //return <div>foo</div>
           return (  <OLFeature map = {map}
             position = {f.position}
@@ -42,7 +51,7 @@ var OLFeatures = React.createClass({
         )
       })}
     </div>
-  )
+  ) : div()
 }
 });
 
