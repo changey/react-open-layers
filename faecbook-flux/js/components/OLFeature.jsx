@@ -25,7 +25,7 @@ var OLFeature = React.createClass({
 				graphicHeight: 40
 			});
 
-			feature.geometry.id = this.props.id;
+			feature.geometry.id = this.props.id
 
 			this.props.layer.addFeatures(feature);
 

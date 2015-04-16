@@ -1,5 +1,4 @@
 var React = require('react');
-var OLFeatures = require('./OLFeatures');
 var Actions = require('../actions/Actions');
 var OLLayerStore = require('../stores/OLLayerStore');
 var OLFeature = require('../components/OLFeature');
@@ -68,7 +67,7 @@ var OLLayer = React.createClass({
     var that = this;
     this.vectorLayer.events.on({
       "featureselected": function(e) {
-        that.setState({selectedFeatureId: e.feature.id})
+        that.setState({selectedFeatureId: e.feature.geometry.id})
       }
     });
 
@@ -81,7 +80,10 @@ var OLLayer = React.createClass({
   },
 
   _onDestroyClick: function() {
-    Actions.destroy();
+
+    this.vectorLayer.removeFeatures(this.vectorLayer.getFeatureById(this.state.selectedFeatureId));
+
+    Actions.destroy(this.state.selectedFeatureId);
   },
 
   _onCreateClick: function() {
@@ -110,16 +112,11 @@ var OLLayer = React.createClass({
       )
     }
 
-    return this.state.render ? (
+    return (
       <div>
         <div className="features">
           {featureDOMs}
         </div>
-        <button className="delete" onClick={this._onDestroyClick}>Delete</button>
-        <button className="create" onClick={this._onCreateClick}>Add a fetaure</button>
-      </div>
-    ) : (
-      <div>
         <button className="delete" onClick={this._onDestroyClick}>Delete</button>
         <button className="create" onClick={this._onCreateClick}>Add a fetaure</button>
       </div>
@@ -131,8 +128,9 @@ var OLLayer = React.createClass({
   */
   _onChange: function() {
 
+    console.log("change")
+    console.log(getFeatureState());
     this.setState(getFeatureState());
-    this.setState({render: _.size(this.state.allFeatures) !== 0})
   }
 });
 

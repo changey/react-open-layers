@@ -4,10 +4,9 @@ require('es6-shim');
 require('es6-shim/es6-sham');
 
 var React = require('react');
-var OLMap = require('./components/OLMap')
-var OLFeature =require("./components/OLFeature")
-var OLFeatures = require("./components/OLFeatures")
-var OLLayer = require("./components/OLLayer")
+var OLMap = require('./components/OLMap');
+var OLFeature =require("./components/OLFeature");
+var OLLayer = require("./components/OLLayer");
 
 var MapView = React.createClass({
 
