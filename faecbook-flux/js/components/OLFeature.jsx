@@ -29,8 +29,6 @@ var OLFeature = React.createClass({
 
 			this.props.layer.addFeatures(feature);
 
-
-
 			//      this.props.map.zoomToMaxExtent();
 
 
