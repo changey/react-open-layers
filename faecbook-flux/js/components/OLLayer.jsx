@@ -81,7 +81,16 @@ var OLLayer = React.createClass({
 
   _onDestroyClick: function() {
 
-    this.vectorLayer.removeFeatures(this.vectorLayer.getFeatureById(this.state.selectedFeatureId));
+    var that = this;
+
+    _.each(this.vectorLayer.features, function(feature) {
+
+      if(feature) {
+        if (feature.geometry.id === that.state.selectedFeatureId) {
+          that.vectorLayer.removeFeatures(feature);
+        }
+      }
+    });
 
     Actions.destroy(this.state.selectedFeatureId);
   },
@@ -128,8 +137,6 @@ var OLLayer = React.createClass({
   */
   _onChange: function() {
 
-    console.log("change")
-    console.log(getFeatureState());
     this.setState(getFeatureState());
   }
 });
