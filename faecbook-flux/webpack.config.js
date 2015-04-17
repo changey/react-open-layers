@@ -6,19 +6,16 @@ module.exports = {
         //make sure port 9601 is used when launching webpack-dev-server
         publicPath: 'http://localhost:9601/assets'
     },
+    devtool: "#eval-source-map",
     module: {
         loaders: [
             {
                 //tell webpack to use jsx-loader for all *.jsx files
                 test: /\.jsx$/,
-                loader: 'jsx-loader?insertPragma=React.DOM&harmony'
+                exclude: [/node-modules/],
+                loader: 'babel-loader'
             }
         ]
-    },
-    externals: {
-        //don't bundle the 'react' npm package with our bundle.js
-        //but get it from a global 'React' variable
-        'react': 'React'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

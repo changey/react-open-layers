@@ -1,3 +1,5 @@
 build/.module-cache/
 node_modules/*
 facebook-flux/node_modules/*
+faecbook-flux/node_modules/*
+npm-debug.log
