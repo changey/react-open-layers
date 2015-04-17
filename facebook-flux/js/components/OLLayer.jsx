@@ -1,8 +1,10 @@
 var React = require('react');
 var _ = require('underscore');
 
-var Actions = require('../actions/Actions');
+var { Actions, LayerActions } = require('../actions/Actions');
+
 var OLLayerStore = require('../stores/OLLayerStore');
+var SelectedFeatureStore = require('../stores/SelectedFeatureStore');
 var OLFeature = require('./OLFeature');
 var OLLayerBasic = require('./OLLayerBasic');
 var OLDragControl = require('./OLDragControl');
@@ -10,7 +12,7 @@ var OLDragControl = require('./OLDragControl');
 function getFeatureState() {
   return {
     allFeatures: OLLayerStore.getAll(),
-    selectedFeatureId: ""
+    selectedFeatureId: SelectedFeatureStore.getSelectedFeature()
   }
 }
 
@@ -22,25 +24,15 @@ var OLLayer = React.createClass({
 
   componentWillMount: function() {
     OLLayerStore.addChangeListener(this._onChange);
+    SelectedFeatureStore.addChangeListener(this._onChange);
   },
 
   componentWillUnmount: function() {
     OLLayerStore.removeChangeListener(this._onChange);
+    SelectedFeatureStore.removeChangeListener(this._onChange);
   },
 
   _onDestroyClick: function() {
-
-    var that = this;
-
-    _.each(this.vectorLayer.features, function(feature) {
-
-      if(feature) {
-        if (feature.geometry.id === that.state.selectedFeatureId) {
-          that.vectorLayer.removeFeatures(feature);
-        }
-      }
-    });
-
     Actions.destroy(this.state.selectedFeatureId);
   },
 
@@ -48,44 +40,46 @@ var OLLayer = React.createClass({
     Actions.create();
   },
 
-  _handleDrag() {
-    console.log("dragging complete");
+  _handleDrag(e) {
+    console.log("dragging complete", e);
+  },
+
+  _onFeatureSelected(id) {
+    console.log("feature selected", id);
+    LayerActions.selectFeature(id);
   },
 
   render: function() {
 
-    console.log("rendering")
+    console.log("rendering ollayer")
 
-    var map = this.props.map;
-    var layer = this.vectorLayer;
+    const map = this.props.map;
 
-    var featureDOMs = [];
+    let featureDOMs = [];
 
-    var allFeatures = this.state.allFeatures;
+    const allFeatures = this.state.allFeatures;
 
-    for (var key in allFeatures) {
-      //return <div>foo</div>
+
+    for (let key in allFeatures) {
       featureDOMs.push (
         <OLFeature
-          map = {map}
+          key = {"feature-" + key}
           position = {allFeatures[key].position}
           id = {allFeatures[key].id}
+          type = "feature"
           x = {allFeatures[key].x}
           y = {allFeatures[key].y}
-          layer = {layer} >
-        </OLFeature>
+          />
       )
     }
 
+    // <OLDragControl map={map} />
     return (
       <div>
-        <OLLayerBasic map={map}>
-          <OLDragControl
-            map={map}
-            onComplete={this._handleDrag}
-          />
+        <OLLayerBasic map={map} onFeatureSelected={this._onFeatureSelected}>
           {featureDOMs}
         </OLLayerBasic>
+
         <button className="delete" onClick={this._onDestroyClick}>Delete</button>
         <button className="create" onClick={this._onCreateClick}>Add a fetaure</button>
       </div>

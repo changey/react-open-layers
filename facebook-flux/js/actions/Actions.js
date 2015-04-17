@@ -22,4 +22,14 @@ var Actions = {
   }
 };
 
-module.exports = Actions;
+
+var LayerActions = {
+  selectFeature: function(id) {
+    AppDispatcher.dispatch({
+      actionType: AppConstants.UPDATE,
+      id: id
+    });
+  }
+}
+
+export default { Actions, LayerActions };

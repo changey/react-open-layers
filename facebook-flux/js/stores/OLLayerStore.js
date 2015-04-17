@@ -21,6 +21,7 @@ function create() {
 }
 
 function destroy(id) {
+  console.log("id", id)
   delete _features[id];
 }
 
@@ -44,7 +45,6 @@ AppDispatcher.register(function(action) {
     case AppConstants.CREATE:
       create();
       OLLayerStore.emitChange();
-
       break;
 
     case AppConstants.DESTROY:

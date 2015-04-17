@@ -8,8 +8,6 @@ var DragControl = React.createClass({
     });
 
     this.props.map.addControl(this._olElement);
-
-    // this._olElement.events.on("oncomplete", this.props.onDragComplete);
   },
 
   componentWillUnMount() {
