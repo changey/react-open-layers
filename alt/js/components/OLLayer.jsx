@@ -14,8 +14,8 @@ var OLLayer = React.createClass({
 
   _getStateFromStores() {
     return {
-        features: this.props.flux.getStore('features').getState(),
-        selectedFeatureId: this.props.flux.getStore('selectedFeature').getState()
+        features: this.props.flux.getStore('features').getState().features,
+        selectedFeatureId: this.props.flux.getStore('selectedFeature').getState().selectedFeatureId
     }
   },
 
@@ -29,7 +29,7 @@ var OLLayer = React.createClass({
   },
 
   _onDestroyClick: function() {
-    this.props.flux.getActions('layer').removeFeature(this.props.selectedFeatureId);
+    this.props.flux.getActions('layer').removeFeature(this.state.selectedFeatureId);
   },
 
   _onCreateClick: function() {
@@ -49,7 +49,7 @@ var OLLayer = React.createClass({
 
     let featureDOMs = [];
 
-    const allFeatures = this.props.features;
+    const allFeatures = this.state.features;
     for (let key in allFeatures) {
       featureDOMs.push (
         <OLFeature

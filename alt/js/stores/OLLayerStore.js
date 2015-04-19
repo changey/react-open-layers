@@ -1,17 +1,16 @@
 // import flux from '../flux';
 // import alt from '../alt'
 
-class FeatureStore {
+export default class FeatureStore {
   constructor(flux) {
-    const actions = this.flux.getActions('layer');
-    this.bindAction(actions.createFeature, this.createFeature);
-    this.bindAction(actions.removeFeature, this.removeFeature);
+    const actions = flux.getActions('layer');
+    this.bindAction(actions.createFeature, this.onCreateFeature);
+    this.bindAction(actions.REMOVE_FEATURE, this.removeFeature);
 
-    this.features = [];
+    this.features = {};
   }
 
-  createFeature() {
-    debugger
+  onCreateFeature() {
     var id = (+new Date() + Math.floor(Math.random() * 999999)).toString(36);
     const feature = {
       id: id,
@@ -23,7 +22,7 @@ class FeatureStore {
     this.features[id] = feature;
   }
 
-  removeFeature({id}) {
+  removeFeature(id) {
     delete this.features[id];
   }
 
@@ -32,4 +31,4 @@ class FeatureStore {
   }
 }
 
-// export default alt.createStore(FeatureStore, 'FeatureStore');
+// module.exports =  alt.createStore(FeatureStore, 'FeatureStore');

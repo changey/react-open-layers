@@ -1,15 +1,15 @@
 // import flux from '../flux';
 // import alt from '../alt';
 
-class SelectedFeatureStore {
+export default class SelectedFeatureStore {
   constructor(flux) {
-    const actions = this.flux.getActions('layer');
-    this.bindAction(actions.selectFeature, this.handleSelectFeature);
+    const actions = flux.getActions('layer');
+    this.bindAction(actions.SELECT_FEATURE, this.handleSelectFeature);
 
-    this.selectedFeatureId = null
+    this.selectedFeatureId = null;
   }
 
-  handleSelectFeature({id}) {
+  handleSelectFeature(id) {
     this.selectedFeatureId = id;
   }
 

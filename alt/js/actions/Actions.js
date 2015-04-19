@@ -8,8 +8,7 @@ export default class LayerActions {
   }
 
   createFeature() {
-    debugger
-    this.dispatch("blah");
+    this.dispatch();
   }
 
   removeFeature(featureId) {

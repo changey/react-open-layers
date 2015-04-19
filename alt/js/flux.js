@@ -12,8 +12,14 @@ class Flux extends Alt {
 
     this.addStore('features', FeatureStore);
     this.addStore('selectedFeature', SelectedFeatureStore);
+    
+    this.dispatcher.register(function (payload) {
+      console.log(payload);
+    });
   }
 }
+
+
 
 // const flux = new Flux();
 export default Flux;
