@@ -4,8 +4,8 @@ var ObjectId = Schema.ObjectId;
 
 var FeatureSchema = new Schema({
   type: { type: String },
-  master_id: { type: ObjectId},
-  author_id: { type: ObjectId }
+  x: { type: Number},
+  y: { type: Number },
 });
 
-mongoose.model('Feature', FeatureSchema);
+module.exports = mongoose.model('Feature', FeatureSchema);

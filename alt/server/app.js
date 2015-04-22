@@ -1,8 +1,13 @@
 var express = require('express');
 var app = express();
+var FeatureAPI = require('./api/feature.js');
 
 app.get('/', function (req, res) {
   res.send('Hello World!');
+});
+
+app.get('/addFeature', function (req, res) {
+  FeatureAPI.addFeature(req, res);
 });
 
 var server = app.listen(9502, function () {

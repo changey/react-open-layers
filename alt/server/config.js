@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-var properties = require("../properties.json");
 
 var uristring;
 var DB_USER = "";
