@@ -11,21 +11,28 @@ import AltContainer from 'alt/AltContainer';
 
 var MapView = React.createClass({
 	componentWillMount() {
-		this.map = new OpenLayers.Map('map', {
-			div: "map",
-			projection: new OpenLayers.Projection("EPSG:900913"),
-			displayProjection: new OpenLayers.Projection("EPSG:4326"),
-			layers: [
-			new OpenLayers.Layer.OSM()
-			]
-		});
-		this.map.addLayer(new OpenLayers.Layer.OSM());
+		this.map = new ol.Map({
+        target: 'map',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.MapQuest({layer: 'sat'})
+          })
+        ],
+
+        view: new ol.View({
+          center: ol.proj.transform([149.75, 42.683], 'EPSG:4326', 'EPSG:3857'),
+          zoom: 1
+        })
+			});
+		//this.map.addLayer(new ol.layer.OSM());
 
 		this.flux = new Flux();
 	},
 
 	componentDidMount() {
-		this.map.render(document.getElementById('map'))
+
+		//this.map.render(document.getElementById('map'))
+		this.map.setTarget('map')
 	},
 
 	render() {

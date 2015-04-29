@@ -6,20 +6,25 @@ var OLFeature = React.createClass({
 		var x = parseInt(this.props.x);
 		var y = parseInt(this.props.y);
 
-		this._olElement = new OpenLayers.Feature.Vector(
-			new OpenLayers.Geometry.Point(x, y)
-		);
+		this._olElement = new ol.Feature();
+		this._olElement.setGeometry(new ol.geom.Point([x, y]));
 
-		if(this.props.id) {
-			this._olElement.geometry.id = this.props.id;
-		}
-		if(this.props.type) {
-			this._olElement.attributes.type = this.props.type;
-		}
+		// if(this.props.id) {
+		// 	this._olElement.geometry.id = this.props.id;
+		// }
+		// if(this.props.type) {
+		// 	this._olElement.attributes.type = this.props.type;
+		// }
 	},
 
 	componentDidMount() {
-		this.props.layer.addFeatures(this._olElement);
+		let features = [];
+		features.push(this._olElement);
+		var vectorSource = new ol.source.Vector({
+			features: features
+		});
+
+		this.props.layer.source = vectorSource;
 	},
 
 	componentWillUnmount() {
